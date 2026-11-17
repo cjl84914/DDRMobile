@@ -4,6 +4,16 @@
 
 > 本项目是独立制作的非官方项目，与 Dance Dance Revolution、StepMania 及其权利人没有官方关联。
 
+## 游戏截图
+
+| 标题画面 | 游戏画面 |
+|:---:|:---:|
+| ![游戏标题画面](docs/screenshots/title.png) | ![四轨游戏画面与音符](docs/screenshots/note-colors.png) |
+
+![游戏选项画面](docs/screenshots/options.png)
+
+*标题、游戏画面及选项界面；游戏画面使用示例音符展示。*
+
 ## 功能
 
 - 四轨触屏与键盘输入，支持长按音符。
@@ -29,7 +39,9 @@
 
 ### 添加歌曲
 
-歌曲目录 `assets/songs/` 被 Git 忽略，需要自行准备有权使用的歌曲、谱面和图片。扫描结构如下：
+歌曲目录 `assets/songs/` 被 Git 忽略。可以从[百度网盘下载歌曲包](https://pan.baidu.com/s/1PuCBHjQPGRhTLKPZbqIJvw?pwd=8fkz)（提取码：`8fkz`），解压后将其中的版本目录放到项目根目录的 `assets/songs/` 下；如果该目录不存在，请先创建。注意避免解压后多出一层目录，确保目录结构与下面的示例一致。请自行确认歌曲、谱面和图片的使用及分发权限。
+
+扫描结构如下：
 
 ```text
 assets/songs/

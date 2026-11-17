@@ -1,70 +1,70 @@
 # DDR-Mobile
 
-一个使用 Godot 和 GDScript 制作的四轨节奏游戏，面向移动设备的触屏操作，也可以使用键盘游玩。选择歌曲和难度，跟随音乐点击对应方向，并在结算画面查看成绩。
+English | [简体中文](README.zh-CN.md)
 
-> 本项目是独立制作的非官方项目，与 Dance Dance Revolution、StepMania 及其权利人没有官方关联。
+A four-lane rhythm game inspired by [StepMania](https://github.com/stepmania/stepmania), built with Godot and GDScript for mobile touchscreens, with keyboard support. Choose a song and difficulty, tap the corresponding directions to the music, and review your performance on the results screen.
 
-## 游戏截图
+> This is an independently created, unofficial project and is not affiliated with Dance Dance Revolution, StepMania, or their respective rights holders.
 
-| 标题画面 | 游戏画面 |
+## Screenshots
+
+| Title screen | Gameplay |
 |:---:|:---:|
-| ![游戏标题画面](docs/screenshots/title.png) | ![四轨游戏画面与音符](docs/screenshots/note-colors.png) |
+| ![Game title screen](docs/screenshots/title.png) | ![Four-lane gameplay with notes](docs/screenshots/note-colors.png) |
 
-![游戏选项画面](docs/screenshots/options.png)
+![Game options screen](docs/screenshots/options.png)
 
-*标题、游戏画面及选项界面；游戏画面使用示例音符展示。*
+*Title, gameplay, and options screens. The gameplay image uses example notes.*
 
-## 功能
+## Features
 
-- 四轨触屏与键盘输入，支持长按音符。
-- 按版本浏览歌曲、选择难度和试听片段。
-- 多级时机判定、连击、生命值和成绩结算。
-- 调整同步偏移、箭头样式和滚动方向；记录已玩歌曲。
-- 读取 SM、SSC 和 DWI 谱面的部分 `dance-single` 格式。解析器并非完整的 StepMania 格式实现，包含不支持内容的谱面可能不会显示。
+- Four-lane touch and keyboard input, including hold notes.
+- Browse songs by release, select difficulties, and preview audio.
+- Multiple timing judgments, combos, life gauge, and results.
+- Adjust sync offset, arrow style, and scroll direction; keep track of played songs.
+- Read a subset of the `dance-single` format in SM, SSC, and DWI charts. The parser is not a complete StepMania format implementation, and charts containing unsupported content may not appear.
 
-## 开始使用
+## Getting Started
 
-### 环境
+### Requirements
 
-- Godot 4：项目配置声明了 **4.7** 和 GL Compatibility 渲染器。
-- 要导出 Android 版本，还需要按照 Godot 的 Android 导出文档配置 Android SDK、JDK 和导出模板。
+- Godot 4: the project configuration specifies **4.7** and the GL Compatibility renderer.
+- To export for Android, configure the Android SDK, JDK, and export templates as described in Godot's Android export documentation.
 
-### 从源码运行
+### Running from source
 
-1. 克隆仓库，用 Godot 项目管理器导入根目录下的 `project.godot`。
-2. 首次导入时等待资源导入完成，然后运行主场景（`main.tscn`）。
-3. 使用触屏或键盘方向键 **← ↓ ↑ →** 游玩。
+1. Clone the repository and import the root `project.godot` in the Godot project manager.
+2. On first import, wait for the assets to be imported, then run the main scene (`main.tscn`).
+3. Play using the touchscreen or the **← ↓ ↑ →** arrow keys.
 
-**当前源码的干净克隆有一项依赖需要先处理：** `project.godot` 配置了 `addons/godot_ai` 的编辑器插件和运行时 autoload，而该目录被 `.gitignore` 忽略。如果本地没有该插件，需要自行提供兼容版本，或在项目设置中移除对应插件和 autoload 配置后再运行。它不是游戏玩法所必需的操作说明。
+### Adding songs
 
-### 添加歌曲
+The `assets/songs/` directory is ignored by Git. You can [download the song pack from Baidu Netdisk](https://pan.baidu.com/s/1PuCBHjQPGRhTLKPZbqIJvw?pwd=8fkz) (extraction code: `8fkz`), extract it, and place the release directories under `assets/songs/` in the project root. Create the directory first if it does not exist. Avoid introducing an extra directory level when extracting; the structure should match the example below. You are responsible for confirming the rights to use and distribute the songs, charts, and images.
 
-歌曲目录 `assets/songs/` 被 Git 忽略。可以从[百度网盘下载歌曲包](https://pan.baidu.com/s/1PuCBHjQPGRhTLKPZbqIJvw?pwd=8fkz)（提取码：`8fkz`），解压后将其中的版本目录放到项目根目录的 `assets/songs/` 下；如果该目录不存在，请先创建。注意避免解压后多出一层目录，确保目录结构与下面的示例一致。请自行确认歌曲、谱面和图片的使用及分发权限。
-
-扫描结构如下：
+The scanner expects the following structure:
 
 ```text
 assets/songs/
-└── 版本名称/
-    └── 歌曲名称/
-        ├── chart.sm        # 也可使用 .ssc 或 .dwi
-        ├── music.ogg       # 也可使用 .mp3 或 .wav
-        ├── banner.png      # 歌曲图片
+└── Release name/
+    └── Song name/
+        ├── chart.sm        # .ssc or .dwi also supported
+        ├── music.ogg       # .mp3 or .wav also supported
+        ├── banner.png      # Song image
         └── background-bg.png
 ```
 
-每首歌须有可导入的音频、歌曲图片、文件名以 `-bg` 结尾的背景图，以及至少一个可解析且可玩的谱面，才会出现在选曲列表中。支持的图片格式为 PNG、JPG、JPEG 和 WebP。添加文件后请等待 Godot 完成导入；导出时还需确保谱面文本文件被包含在导出包中。目录缺失时歌曲列表会为空。
+Each song must have importable audio, a song image, a background image whose filename ends in `-bg`, and at least one parseable, playable chart to appear in the song list. Supported image formats are PNG, JPG, JPEG, and WebP. After adding files, wait for Godot to finish importing them; when exporting, also ensure the chart text files are included in the export package. The song list will be empty if the directory is missing.
 
-## 项目结构
+## Project Structure
 
-- `main.tscn` / `main.gd`：主场景、游戏状态与玩法。
-- `scripts/`：歌曲目录、谱面解析、选曲和界面等逻辑。
-- `assets/`：界面素材及本地歌曲资源。
-- `tests/`：GDScript 测试。
-- `export_presets.cfg`：Godot 导出配置；使用前请检查包名、目标架构及签名设置。
+- `main.tscn` / `main.gd`: main scene, game state, and gameplay.
+- `scripts/`: song catalog, chart parsing, song selection, and UI logic.
+- `assets/`: UI assets and local song resources.
+- `tests/`: GDScript tests.
+- `export_presets.cfg`: Godot export settings; check the package name, target architectures, and signing settings before use.
 
-## 版权与发布
+## Copyright and Distribution
 
-本仓库尚未提供项目代码许可证，不能假定代码或素材已获开源授权。项目使用了第三方素材；特别是 `assets/stepmania/README.md` 中记录的 StepMania 美术资源，其具体授权和再分发权限尚待核实。歌曲、谱面、封面、标题图及其他素材也需要分别确认权利。请仅使用和分发已取得适当授权的内容。
+This repository does not yet provide a license for the project code; do not assume that the code or assets are open source. The project uses third-party assets, notably the StepMania artwork documented in `assets/stepmania/README.md`, whose specific licensing and redistribution permissions remain to be verified. Rights to songs, charts, covers, title images, and other assets must also be checked individually. Use and distribute only content for which you have appropriate permission.
 
-公开仓库或发布安装包前，请审查所有跟踪文件和 Git 历史中的签名密钥、构建产物及第三方素材，并自行选择和添加适用的许可证。本项目不提供音乐内容的使用授权。
+Before publishing the repository or distributing an install package, review all tracked files and Git history for signing keys, build artifacts, and third-party assets, and choose and add an appropriate license. This project does not grant rights to use any music.

@@ -1,0 +1,10 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+assets/songs
+addons/godot_ai
+
+# Local probe output
+.artifacts/
+.test-home
+.godot-ai-install

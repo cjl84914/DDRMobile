@@ -1,0 +1,23 @@
+// Original test fixture; no external assets.
+#TITLE:Example: Title;
+#ARTIST:Fixture Artist;
+#MUSIC:https://example.test/song.ogg;
+#OFFSET:0.25;
+#BPMS:0=120;
+#STOPS:;
+#NOTES:
+     dance-single:
+     fixture:
+     Easy:
+     3:
+     0,0,0,0,0:
+1000
+0200
+0000
+0000
+,
+0000
+0300
+0001
+0000
+;
